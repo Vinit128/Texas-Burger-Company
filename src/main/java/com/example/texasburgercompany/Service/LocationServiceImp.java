@@ -24,12 +24,12 @@ public class LocationServiceImp implements LocationService {
         return lrepo.save(location);
     }
 
-    @Override
+    /*@Override
     public Location get(String id) {
         return lrepo.findById(id).get();
 
     }
-
+*/
     @Override
     public Location update(String id, Location loc) {
         return lrepo.save(loc);
@@ -38,6 +38,11 @@ public class LocationServiceImp implements LocationService {
     @Override
     public void delete(String id) {
         lrepo.deleteById(id);
+    }
+
+    @Override
+    public Location listById(String id) {
+        return lrepo.getById(id);
     }
 
 }

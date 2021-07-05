@@ -2,6 +2,7 @@ package com.example.texasburgercompany.Service;
 
 import com.example.texasburgercompany.Model.Reservation;
 import com.example.texasburgercompany.Repository.ReservationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 @Service
 public class ReservationServiceImp implements ReservationService{
 
+  @Autowired
   private ReservationRepository reservationRepo;
 
     @Override

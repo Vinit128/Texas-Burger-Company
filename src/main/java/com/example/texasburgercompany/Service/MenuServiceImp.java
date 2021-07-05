@@ -20,8 +20,13 @@ public class MenuServiceImp implements MenuService {
     }
 
     @Override
-    public Menu createLocation(Menu menu) {
+    public Menu createMenu(Menu menu) {
         return menuRepo.save(menu);
+    }
+
+    @Override
+    public Menu listById(String id) {
+        return  menuRepo.findById(id).get();
     }
 
     @Override
