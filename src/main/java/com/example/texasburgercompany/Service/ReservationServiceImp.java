@@ -2,7 +2,7 @@ package com.example.texasburgercompany.Service;
 
 import com.example.texasburgercompany.Model.Reservation;
 import com.example.texasburgercompany.Repository.ReservationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,24 +10,27 @@ import java.util.List;
 @Service
 public class ReservationServiceImp implements ReservationService{
 
-  @Autowired
-  private ReservationRepository reservationRepo;
+   private final ReservationRepository reservationRepo;
 
-    @Override
+   public ReservationServiceImp(ReservationRepository reservationRepo) {
+    this.reservationRepo = reservationRepo;
+  }
+
+  @Override
     public List<Reservation> listAll() {
         return reservationRepo.findAll();
     }
 
     @Override
-    public Reservation createLocation(Reservation reservation) {
+    public Reservation createReservation(Reservation reservation) {
         return reservationRepo.save(reservation);
     }
 
-    @Override
+    /*@Override
     public Reservation get(String id) {
         return reservationRepo.findById(id).get();
     }
-
+*/
     @Override
     public Reservation update(String id, Reservation reservation) {
         return reservationRepo.save(reservation);
@@ -37,4 +40,10 @@ public class ReservationServiceImp implements ReservationService{
     public void delete(String id) {
       reservationRepo.deleteById(id);
     }
+
+  @Override
+  public Reservation listById(String id) {
+    Reservation reservation = reservationRepo.findById(id).get();
+    return reservation;
+  }
 }

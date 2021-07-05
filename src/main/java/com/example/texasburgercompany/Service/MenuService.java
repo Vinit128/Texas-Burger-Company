@@ -1,6 +1,5 @@
 package com.example.texasburgercompany.Service;
 
-import com.example.texasburgercompany.Model.Location;
 import com.example.texasburgercompany.Model.Menu;
 
 import java.util.List;
@@ -8,15 +7,15 @@ import java.util.List;
 public interface MenuService {
 
 
-    public List<Menu> listAll();
+     List<Menu> listAll();
 
-    public Menu createMenu(Menu menu);
+     Menu createMenu(Menu menu);
 
-    Menu listById(String id);
+     Menu listById(String id);
 
-    public Menu get(String id);
-    public Menu update(String id, Menu menu);
+     Menu get(String id);
+     Menu update(String id, Menu menu);
 
-    public void delete(String id);
+     void delete(String id);
 }
 

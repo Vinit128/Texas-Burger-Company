@@ -2,7 +2,7 @@ package com.example.texasburgercompany.Service;
 
 import com.example.texasburgercompany.Model.Menu;
 import com.example.texasburgercompany.Repository.MenuRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,8 +10,11 @@ import java.util.List;
 @Service
 public class MenuServiceImp implements MenuService {
 
-    @Autowired
-  private MenuRepository menuRepo;
+    private final MenuRepository menuRepo;
+
+    public MenuServiceImp(MenuRepository menuRepo) {
+        this.menuRepo = menuRepo;
+    }
 
 
     @Override

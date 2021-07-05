@@ -3,10 +3,10 @@ package com.example.texasburgercompany.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 
 
@@ -14,10 +14,13 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Location {
+public class Location implements Serializable {
 
     @Id
-    @GeneratedValue
+    @Column(columnDefinition = "VARCHAR(36)")
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+
     private String id;
     private String name;
     private String state;
@@ -25,5 +28,6 @@ public class Location {
     private Integer zip;
 
 
-    }
+
+}
 

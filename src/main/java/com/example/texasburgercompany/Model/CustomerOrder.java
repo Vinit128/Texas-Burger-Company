@@ -3,26 +3,32 @@ package com.example.texasburgercompany.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Order {
+public class CustomerOrder {
 
     @Id
-    @GeneratedValue
+    @Column(columnDefinition = "VARCHAR(36)")
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+
     private String orderId;
     private String orderQuantity;
     private String description;
     private String price;
     private String tax;
     private String totalprice;
-
 
 
 }

@@ -3,7 +3,7 @@ package com.example.texasburgercompany.Controller;
 
 import com.example.texasburgercompany.Model.Menu;
 import com.example.texasburgercompany.Service.MenuService;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,8 +12,11 @@ import java.util.List;
 @RequestMapping("/menu")
 public class MenuController {
 
-     @Autowired
-    private MenuService mservice;
+     private final MenuService mservice;
+
+    public MenuController(MenuService mservice) {
+        this.mservice = mservice;
+    }
 
     //CREATE
     @PostMapping("/addmenu")
@@ -24,17 +27,17 @@ public class MenuController {
 
 
     //Retrive from the database
-    @GetMapping("/location/menu")
+    @GetMapping()
     public List<Menu> getAll() {
         return mservice.listAll();
     }
 
-    @GetMapping("/location/{id}")
+    @GetMapping("/{id}")
     public Menu getDemoById(@PathVariable String id) {
         return  mservice.listById(id);
     }
 
-    @PutMapping("/location/menu/update")
+    @PutMapping("/update")
     public Menu updateDemo(String id , @RequestBody Menu menu ) {
         return mservice.update(id,menu);
     }

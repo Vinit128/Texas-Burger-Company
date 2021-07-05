@@ -2,7 +2,6 @@ package com.example.texasburgercompany.Service;
 
 import com.example.texasburgercompany.Model.Location;
 import com.example.texasburgercompany.Repository.LocationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +10,11 @@ import java.util.List;
 @Service
 public class LocationServiceImp implements LocationService {
 
-    @Autowired
-    private LocationRepository lrepo;
+    private final LocationRepository lrepo;
+
+    public LocationServiceImp(LocationRepository lrepo) {
+        this.lrepo = lrepo;
+    }
 
     @Override
     public List<Location> listAll() {
@@ -24,16 +26,13 @@ public class LocationServiceImp implements LocationService {
         return lrepo.save(location);
     }
 
-    /*@Override
-    public Location get(String id) {
-        return lrepo.findById(id).get();
 
-    }
-*/
     @Override
     public Location update(String id, Location loc) {
         return lrepo.save(loc);
     }
+
+
 
     @Override
     public void delete(String id) {
@@ -41,8 +40,9 @@ public class LocationServiceImp implements LocationService {
     }
 
     @Override
-    public Location listById(String id) {
-        return lrepo.getById(id);
+    public Location findById(String id) {
+        Location location = lrepo.findById(id).get();
+        return location;
     }
 
 }
