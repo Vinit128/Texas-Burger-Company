@@ -30,5 +30,4 @@ public class CustomerOrder {
     private String tax;
     private String totalprice;
 
-
 }

@@ -7,7 +7,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
+import java.util.List;
 
 
 @Entity
@@ -23,9 +23,14 @@ public class Location implements Serializable {
 
     private String id;
     private String name;
-    private String state;
-    private String city;
-    private Integer zip;
+    private String day;
+    private String time;
+
+    @OneToMany
+    private List<Reservation> reservation;
+
+    @OneToOne
+    private Menu menu;
 
 
 

@@ -22,11 +22,11 @@ public class Reservation {
     @Column(columnDefinition = "VARCHAR(36)")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-
     private String reservationId;
 
      private ZonedDateTime StartTime;
      private ZonedDateTime EndTime;
-     private ZonedDateTime workinghours;
+     private String customerName;
+     private String customerMobile;
 
 }
