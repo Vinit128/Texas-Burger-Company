@@ -1,10 +1,10 @@
 package com.example.texasburgercompany.Service;
 
+
+import com.example.texasburgercompany.Exception.ReservationNotFoundException;
 import com.example.texasburgercompany.Model.Reservation;
 import com.example.texasburgercompany.Repository.ReservationRepository;
-
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -44,6 +44,12 @@ public class ReservationServiceImp implements ReservationService{
   @Override
   public Reservation listById(String id) {
     Reservation reservation = reservationRepo.findById(id).get();
-    return reservation;
+
+      if(reservation==null) {
+          throw new ReservationNotFoundException("reservation with id=" +id+ "not found ");
+      }else{
+          return reservation;
+      }
+
   }
 }

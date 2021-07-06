@@ -1,5 +1,8 @@
 package com.example.texasburgercompany.Service;
 
+import com.example.texasburgercompany.Exception.LocationNotFoundException;
+import com.example.texasburgercompany.Exception.MenuNotFoundException;
+import com.example.texasburgercompany.Model.Location;
 import com.example.texasburgercompany.Model.Menu;
 import com.example.texasburgercompany.Repository.MenuRepository;
 
@@ -29,8 +32,15 @@ public class MenuServiceImp implements MenuService {
 
     @Override
     public Menu listById(String id) {
-        return  menuRepo.findById(id).get();
+        Menu menu = menuRepo.findById(id).get();
+
+        if(menu==null) {
+            throw new MenuNotFoundException("Menu with id=" +id+ "not found ");
+        }else{
+            return menu;
+        }
     }
+
 
     @Override
     public Menu get(String id) {

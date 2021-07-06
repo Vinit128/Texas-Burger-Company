@@ -1,5 +1,6 @@
 package com.example.texasburgercompany.Service;
 
+import com.example.texasburgercompany.Exception.LocationNotFoundException;
 import com.example.texasburgercompany.Model.Location;
 import com.example.texasburgercompany.Repository.LocationRepository;
 import org.springframework.stereotype.Service;
@@ -42,7 +43,12 @@ public class LocationServiceImp implements LocationService {
     @Override
     public Location findById(String id) {
         Location location = lrepo.findById(id).get();
-        return location;
+
+        if(location==null) {
+            throw new LocationNotFoundException("location with id=" +id+ "not found ");
+        }else{
+            return location;
+        }
     }
 
 }
