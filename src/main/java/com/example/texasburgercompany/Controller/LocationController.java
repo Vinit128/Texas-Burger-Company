@@ -33,15 +33,15 @@ public class LocationController {
 
 
 
-    @GetMapping
+    @GetMapping("/{page}/{size}")
     @ApiOperation(value="Find all location",
             notes="Returns a list of all location in the database")
     @ApiResponses(value={
             @ApiResponse(code=200,message="Ok"),
             @ApiResponse(code=500,message="Internal Server Error")
     })
-    public List<Location> getAll() {
-        return lservice.listAll();
+    public List<Location> getAll(@PathVariable("page") int page, @PathVariable("size") int size) {
+        return lservice.listAll(page, size);
     }
 
     @GetMapping("/{id}")
@@ -52,12 +52,12 @@ public class LocationController {
             @ApiResponse(code=404,message="Not Found"),
             @ApiResponse(code=500,message="Internal Server Error")
     })
-    public Location getDemoById(  @ApiParam(value="it is the id of the location", required=true) @PathVariable String id) {
+    public Location getLocationById(  @ApiParam(value="it is the id of the location", required=true) @PathVariable String id) {
         return  lservice.findById(id);
     }
 
 
-    @PutMapping("/updateLocation")
+    @PutMapping("/updateLocation/{id}")
     @ApiOperation(value="Updates the  location",
             notes="Stores the updated record  in the database")
     @ApiResponses(value={
@@ -65,7 +65,7 @@ public class LocationController {
             @ApiResponse(code=404,message="Not Found"),
             @ApiResponse(code=500,message="Internal Server Error")
     })
-    public Location updateDemo(String id ,@RequestBody Location location ) {
+    public Location updateLocation(@PathVariable("id") String id ,@RequestBody Location location ) {
         return lservice.update( id,location);
     }
 

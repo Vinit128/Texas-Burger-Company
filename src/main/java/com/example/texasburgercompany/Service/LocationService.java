@@ -6,7 +6,7 @@ import java.util.List;
 public interface LocationService {
 
 
-     List<Location> listAll();
+     List<Location> listAll(int page, int size);
 
      Location createLocation(Location location);
 

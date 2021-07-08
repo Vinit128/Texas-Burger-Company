@@ -23,12 +23,13 @@ public class ReservationController {
           this.rservice = rservice;
      }
 
-     @PostMapping("/addReservation")
-     @ApiOperation(value="Creates the  Reservation",
+     @PostMapping(value = "/addReservation", consumes = "application/json", produces = "application/json")
+     @ApiOperation(value="Creates the  new reservation",
              notes="Creates a new record  in the database")
-     @ApiResponses(value={
-             @ApiResponse(code=200,message="Ok"),
-             @ApiResponse(code=500,message="Internal Server Error")
+     @ApiResponses(value = {
+             @ApiResponse(code = 404, message = "Not Found"),
+             @ApiResponse(code = 500, message = "Internal Server Error"),
+             @ApiResponse(code = 200,message = "Successful")
      })
      public Reservation addReservation(@RequestBody Reservation reservation)
      {
@@ -59,7 +60,7 @@ public class ReservationController {
           return  rservice.listById(id);
      }
 
-     @PutMapping("/update")
+     @PutMapping("/update/{id}")
      @ApiOperation(value="Updates the Reservation",
              notes="Stores the updated record  in the database"
      )
@@ -68,7 +69,7 @@ public class ReservationController {
              @ApiResponse(code = 500, message = "Internal Server Error"),
              @ApiResponse(code = 200,message = "Successful")
      })
-     public Reservation updateReservation(String id , @RequestBody Reservation reservation ) {
+     public Reservation updateReservation(@PathVariable("id") String id , @RequestBody Reservation reservation ) {
           return rservice.update(id,reservation);
      }
 

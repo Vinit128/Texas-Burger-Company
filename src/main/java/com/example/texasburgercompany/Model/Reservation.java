@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.sql.Timestamp;
 import java.time.ZonedDateTime;
 
 
@@ -22,10 +23,10 @@ public class Reservation {
     @Column(columnDefinition = "VARCHAR(36)")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    private String reservationId;
 
-     private ZonedDateTime StartTime;
-     private ZonedDateTime EndTime;
+    private String reservationId;
+    private Timestamp StartTime;
+     private Timestamp EndTime;
      private String customerName;
      private String customerMobile;
 

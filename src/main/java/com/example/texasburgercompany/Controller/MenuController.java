@@ -19,7 +19,7 @@ public class MenuController {
 
      private final MenuService mservice;
 
-    public MenuController(MenuService mservice) {
+     public MenuController(MenuService mservice) {
         this.mservice = mservice;
     }
 
@@ -57,11 +57,11 @@ public class MenuController {
             @ApiResponse(code = 500, message = "Internal Server Error"),
             @ApiResponse(code = 200,message = "Successful")
     })
-    public Menu getDemoById(@PathVariable String id) {
+    public Menu getMenuById(@PathVariable String id) {
         return  mservice.listById(id);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update/{id}")
     @ApiOperation(value="Updates the  Menu",
             notes="Stores the updated record  in the database")
     @ApiResponses(value={
@@ -70,7 +70,7 @@ public class MenuController {
 
     })
 
-    public Menu updateDemo(String id , @RequestBody Menu menu ) {
+    public Menu updateMenu(@PathVariable("id") String id , @RequestBody Menu menu ) {
         return mservice.update(id,menu);
     }
 
